@@ -10,22 +10,26 @@ import java.util.List;
 
 public class OperadorArquivoCSV {
 	
-	public void criarArquivo(String url) {
+	public void criarArquivo(String url, String ...Titulo) {
 		
 		try {
 			File arquivoCSV = new File(url);
 			arquivoCSV.createNewFile();
+			FileWriter escreverTitulo= new FileWriter(url);
+
+			escreverTitulo.write(String.join( ";", Titulo));
+
+			escreverTitulo.close();
 		
 		}
 			
 		catch(Exception error) {
-			System.out.println("DEu erro mané");
+			System.out.println("DEu erro ao tentar criar o arquivo: "+url);
 		}
 	};
 	
 	public void escreverArquivo (String url , String...dados) {
 		
-		criarArquivo(url);
 		
 		try{			
 			List<String> dadosExistentes=lerArquivo(url);
@@ -54,7 +58,7 @@ public class OperadorArquivoCSV {
 			resultado= Files.readAllLines(path);
 		}
 		catch(Exception error ){
-			System.out.println("DEu erro mané");
+			System.out.println("Deu erro ao tentar ler o arquivo: "+url);
 		};
 		return resultado;
 	}                                      
