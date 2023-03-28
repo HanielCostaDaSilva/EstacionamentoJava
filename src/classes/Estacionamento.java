@@ -116,7 +116,7 @@ public class Estacionamento {
 
 		for(int i = 1; i< dadosExistentes.size();i++) {
 			try{
-				this.placas[i-1]=dadosExistentes.get(i).split(",")[1];
+				this.placas[i-1]=dadosExistentes.get(i).split(";")[1];
 			}
 			catch(Exception e){
 				this.placas[i-1]=null;	

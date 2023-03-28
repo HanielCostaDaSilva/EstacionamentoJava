@@ -30,7 +30,7 @@ public class Teste {
 		}
 		//vagas livres
 		
-		estac.sair(6);
+		estac.sair(8);
 		aux2 = estac.listarGeral();
 		for (int i=0; i<aux2.length;i++) {
 			System.out.println(aux2[i]);
