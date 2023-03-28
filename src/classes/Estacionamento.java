@@ -12,6 +12,8 @@ public class Estacionamento {
 	private String urlPlacas="placas.csv"; // vaga;placa
 	private String urlHistorico="historico.csv";//data;vaga;placa;entrada
 	private OperadorArquivoCSV operadorArquivo = new OperadorArquivoCSV();
+	private List<String> dadosExistentes = new ArrayList<String>();
+
 
 	public Estacionamento(int vagasLivres) throws Exception, FilerException {
 		if (vagasLivres <=0) throw new Exception("VALOR DE VAGAS INSERIDO E INVALIDO");
@@ -106,10 +108,16 @@ public class Estacionamento {
 	};
 	
 	public void updatePlacas() {
-		List<String> text = operadorArquivo.lerArquivo(urlPlacas);
-		for(int i = 0; i< text.size();i++) {
-			System.out.println(text.get(i));
-		}
+		this.dadosExistentes = operadorArquivo.lerArquivo(urlPlacas);
+
+		for(int i = 1; i< dadosExistentes.size();i++) {
+			try{
+				this.placas[i-1]=dadosExistentes.get(i).split(",")[1];
+			}
+			catch(Exception e){
+				this.placas[i-1]=null;	
+			}}
+		for(int j = 0; j< placas.length;j++) {
+				System.out.println(placas[j]);
 	}
-	
-}
+}}
