@@ -1,7 +1,5 @@
 package classes;
 
-import java.util.ArrayList;
-
 import javax.annotation.processing.FilerException;
 
 public class Teste {

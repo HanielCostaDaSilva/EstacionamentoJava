@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.annotation.processing.FilerException;
 
+import classes.operadorCSV.OperadorArquivoCSV;
+
 
 public class Estacionamento {
 	private String[] placas;

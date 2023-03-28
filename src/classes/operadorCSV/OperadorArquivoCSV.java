@@ -1,4 +1,4 @@
-package classes;
+package classes.operadorCSV;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -34,7 +34,7 @@ public class OperadorArquivoCSV {
 		
 	};
 	
-	public void escreverArquivo (String url , String...dados) {
+	public static void escreverArquivo (String url , String...dados) {
 		
 		
 		try{			
@@ -55,7 +55,7 @@ public class OperadorArquivoCSV {
 		}
 	}
 	
-	public List<String> lerArquivo(String url){
+	public static List<String> lerArquivo(String url){
 		
 		List<String> resultado = new ArrayList<String>();
 		
@@ -69,7 +69,7 @@ public class OperadorArquivoCSV {
 		return resultado;
 	}                                      
 	
-	public String lerArquivo(List<String> dadosExistentes){
+	public static String lerArquivo(List<String> dadosExistentes){
 		
 		String linha="";
 		
