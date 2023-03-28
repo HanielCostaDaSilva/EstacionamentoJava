@@ -12,9 +12,6 @@ public class Teste {
 
 		
 		//Lista a quantidades de vagas livres
-		for (int i=0; i<aux.size();i++) {
-			System.out.println(aux.get(i));
-		}
 
 
 		//Exibe o arquivo placas.csv
@@ -32,9 +29,11 @@ public class Teste {
 			System.out.println(aux2[i]);
 		}
 		//vagas livres
-		for (int i=0; i<aux.size();i++) {
-			System.out.println(aux.get(i));
-		}
 		
+		estac.sair(6);
+		aux2 = estac.listarGeral();
+		for (int i=0; i<aux2.length;i++) {
+			System.out.println(aux2[i]);
+		}
 	}
 }

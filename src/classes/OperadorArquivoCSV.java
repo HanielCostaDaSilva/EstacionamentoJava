@@ -45,7 +45,7 @@ public class OperadorArquivoCSV {
 			
 			//adicionar no csv
 			String todasLinhas= lerArquivo(dadosExistentes);
-			FileWriter arquivo = new FileWriter(url);
+			FileWriter arquivo = new FileWriter(new File("").getCanonicalPath()+"/data/".concat(url), true);
 			arquivo.write(todasLinhas);
 			arquivo.close();
 			
@@ -78,6 +78,23 @@ public class OperadorArquivoCSV {
 			
 		}
 		return linha;
-		
 	}
+
+
+	public void atualizaArquivo(String url, String[] placas) throws IOException {
+		File arquivoCSV = new File(new File("").getCanonicalPath()+"/data/".concat(url));
+		arquivoCSV.createNewFile();
+		FileWriter update = new FileWriter(arquivoCSV, false);
+		update.write("vaga,placa"+"\n");
+		for(int i = 0; i < placas.length; i++){
+			if (i ==  placas.length-1){
+				update.write(i+1+","+placas[i]);
+			}else{
+				update.write(i+1+","+placas[i]+"\n");
+			}
+		}
+		update.close();
+	}
+
+
 }

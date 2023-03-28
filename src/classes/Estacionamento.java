@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,10 @@ public class Estacionamento {
 		// // vaga;placa
 		//data;vaga;placa;saiu
 		operadorArquivo.escreverArquivo(urlHistorico, Integer.toString(vaga),placa,"saida");
+		operadorArquivo.atualizaArquivo(urlPlacas, placas);
+		
 		//!! !! !! falta remover do urlPlacas a placa que saiu
+
 
 	};
 	
@@ -117,7 +121,14 @@ public class Estacionamento {
 			catch(Exception e){
 				this.placas[i-1]=null;	
 			}}
-		for(int j = 0; j< placas.length;j++) {
-				System.out.println(placas[j]);
+
+}
+
+	public void updateArquivos(){
+		try {
+			operadorArquivo.atualizaArquivo(urlPlacas, placas);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-}}
+}
