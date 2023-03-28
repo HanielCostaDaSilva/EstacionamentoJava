@@ -104,7 +104,7 @@ public class Estacionamento {
 	}
 	
 	private boolean checarVagaEstaVazia(int posicao) {
-		return this.placas[posicao] == null;
+		return this.placas[posicao-1] == null;
 	};
 	
 	private boolean checarVagaExiste(int posicao) {
@@ -123,12 +123,4 @@ public class Estacionamento {
 			}}
 
 }
-
-	public void updateArquivos(){
-		try {
-			operadorArquivo.atualizaArquivo(urlPlacas, placas);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }
