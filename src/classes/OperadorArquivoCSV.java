@@ -83,6 +83,7 @@ public class OperadorArquivoCSV {
 
 	public void atualizaArquivo(String url, String[] placas) throws IOException {
 		File arquivoCSV = new File(new File("").getCanonicalPath()+"/data/".concat(url));
+		//isto talvez tenha que ser mudado, criar uma variavel privada para o File das placas não ser recriado várias vezes
 		FileWriter update = new FileWriter(arquivoCSV, false);
 		update.write("vaga;placa\n");
 		for(int i = 0; i < placas.length; i++){
