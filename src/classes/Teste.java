@@ -8,7 +8,7 @@ public class Teste {
 	public static void main(String[] args) throws FilerException, Exception {
 		Estacionamento estac = new Estacionamento(10);
 		String[] aux2 = estac.listarGeral();
-		ArrayList<Integer> aux = estac.listarLivres();
+	
 
 		
 		//Lista a quantidades de vagas livres
@@ -21,7 +21,6 @@ public class Teste {
 
 		estac.updatePlacas();
 		aux2 = estac.listarGeral();
-		aux = estac.listarLivres();
 
 
 		//lista a quantidade de vagas livrwa ouTRA VEZX
@@ -30,7 +29,7 @@ public class Teste {
 		}
 		//vagas livres
 		
-		estac.sair(8);
+		estac.sair(1);
 		aux2 = estac.listarGeral();
 		for (int i=0; i<aux2.length;i++) {
 			System.out.println(aux2[i]);
