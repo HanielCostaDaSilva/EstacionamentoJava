@@ -1,6 +1,8 @@
-package classes;
+package classes.teste;
 
 import javax.annotation.processing.FilerException;
+
+import classes.Estacionamento;
 
 public class Teste {
 	public static void main(String[] args) throws FilerException, Exception {
