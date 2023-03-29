@@ -1,6 +1,5 @@
 package classes;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,19 +12,22 @@ public class Estacionamento {
 
 	private String urlPlacas = "placas.csv"; // vaga;placa
 	private String urlHistorico = "historico.csv";// data;vaga;placa;entrada
-	private OperadorArquivoCSV operadorArquivo = new OperadorArquivoCSV();
 	private List<String> dadosExistentes = new ArrayList<String>();
 
+
+	
 	public Estacionamento(int vagasLivres) throws Exception, FilerException {
 		if (vagasLivres <= 0) //checa se a quantidade de vagas é maior que 0
 			throw new Exception("VALOR DE VAGAS INSERIDO E INVALIDO");
 		
 		this.placas = new String[vagasLivres]; //placas é instanciada com a quantidade de vagas pedidas pelo usuário
 		
-		operadorArquivo.criarArquivo(urlHistorico, "data", "vaga", "placa", "entrada"); //criamos o arquivo que conterá o histórico
-		operadorArquivo.criarArquivo(urlPlacas, "vaga", "placa"); // é criado o arquivo que armazena todsas as placas presentes no estacionamentos.
+		OperadorArquivoCSV.criarArquivo(urlHistorico, "data", "vaga", "placa", "entrada"); //criamos o arquivo que conterá o histórico
+		OperadorArquivoCSV.criarArquivo(urlPlacas, "vaga", "placa"); // é criado o arquivo que armazena todsas as placas presentes no estacionamentos.
 		lerDados(); //verificamos se já há algum veículo dentro do arquivo, para inserí-lo na lista de placas. 
 	};
+
+
 
 	public void entrar(String placa, int vaga) throws Exception, FilerException {
 
@@ -35,10 +37,12 @@ public class Estacionamento {
 			throw new Exception("VAGA JA PREENCHIDA");
 
 		this.placas[vaga - 1] = placa;
-		operadorArquivo.escreverArquivo(urlPlacas, Integer.toString(vaga), placa);
-		operadorArquivo.escreverArquivo(urlHistorico, Integer.toString(vaga), placa, "entrada");
+		OperadorArquivoCSV.escreverArquivo(urlPlacas, Integer.toString(vaga), placa);
+		OperadorArquivoCSV.escreverArquivo(urlHistorico, Integer.toString(vaga), placa, "entrada");
 
 	};
+
+
 
 	public void sair(int vaga) throws Exception, FilerException {
 
@@ -52,12 +56,14 @@ public class Estacionamento {
 
 		// // vaga;placa
 		// data;vaga;placa;saiu
-		operadorArquivo.escreverArquivo(urlHistorico, Integer.toString(vaga), placa, "saida");
-		operadorArquivo.atualizaArquivo(urlPlacas, placas);
+		OperadorArquivoCSV.escreverArquivo(urlHistorico, Integer.toString(vaga), placa, "saida");
+		OperadorArquivoCSV.atualizaArquivo(urlPlacas, placas);
 
 		// !! !! !! falta remover do urlPlacas a placa que saiu
 
 	};
+
+
 
 	public int consultarPlaca(String placa) {
 
@@ -68,6 +74,8 @@ public class Estacionamento {
 		}
 		return -1; // caso não ache a placa
 	};
+
+
 
 	public void transferir(int vaga1, int vaga2) throws Exception {
 		// A vaga1 deve existir não estA vazia.
@@ -80,6 +88,8 @@ public class Estacionamento {
 		this.placas[vaga2] = this.placas[vaga1];
 		this.placas[vaga1] = null;
 	}
+
+
 
 	public String[] listarGeral() {
 
@@ -119,7 +129,7 @@ public class Estacionamento {
 	};
 
 	public void updatePlacas() {
-		this.dadosExistentes = operadorArquivo.lerArquivo(urlPlacas);
+		this.dadosExistentes = OperadorArquivoCSV.lerArquivo(urlPlacas);
 
 		for (int i = 1; i < dadosExistentes.size(); i++) {
 			try {
@@ -132,7 +142,7 @@ public class Estacionamento {
 	}
 
 	public void lerDados() {
-		List<String> linhasCSV = operadorArquivo.lerArquivo(urlPlacas);
+		List<String> linhasCSV = OperadorArquivoCSV.lerArquivo(urlPlacas);
 
 		linhasCSV.remove(0); // Removemos a linha que contêm o título, a fim de pulá-lo na contagem
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OperadorArquivoCSV {
 	
-	public void criarArquivo(String url, String ...Titulo) throws IOException {
+	public static void criarArquivo(String url, String ...Titulo) throws IOException {
 		
 		String filePath = new File("").getCanonicalPath()+"/data/";
 		File data = new File(filePath.concat(url));
@@ -81,17 +81,13 @@ public class OperadorArquivoCSV {
 	}
 
 
-	public void atualizaArquivo(String url, String[] placas) throws IOException {
+	public static void atualizaArquivo(String url, String[] placas) throws IOException {
 		File arquivoCSV = new File(new File("").getCanonicalPath()+"/data/".concat(url));
 		//isto talvez tenha que ser mudado, criar uma variavel privada para o File das placas não ser recriado várias vezes
 		FileWriter update = new FileWriter(arquivoCSV, false);
 		update.write("vaga;placa\n");
 		for(int i = 0; i < placas.length; i++){
-			if (i ==  placas.length-1){
-				update.write(i+1+";"+placas[i]);
-			}else{
-				update.write(i+1+";"+placas[i]+"\n");
-			}
+			update.write(i+1+";"+placas[i]+"\n");
 		}
 		update.close();
 	}
