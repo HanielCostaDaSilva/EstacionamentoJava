@@ -11,7 +11,7 @@ public class AplicacaoConsole2 {
 		Estacionamento estacionamento = null;
 		
 		try {
-			estacionamento = new Estacionamento(10);	//10 vagas
+			estacionamento = new Estacionamento(30);	//10 vagas
 			new Estacionamento(0);	//0 vagas
 			System.out.println("*************0--->Nao lançou exceção para: construtor"); 
 		}catch (Exception e) {System.out.println("exceção0--->"+e.getMessage());}
@@ -28,7 +28,6 @@ public class AplicacaoConsole2 {
 			System.out.println("*************2--->Nao lançou exceção para: sair - 2"); 
 		}catch (Exception e) {System.out.println("exceção2--->"+e.getMessage());}
 
-		
 		
 		int vaga = estacionamento.consultarPlaca("XXX0000");
 		System.out.println("placa XXX0000 nao encontrada, vaga= "+vaga); 

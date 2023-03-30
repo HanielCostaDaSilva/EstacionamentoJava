@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OperadorArquivoCSV {
 	
-	public void criarArquivo(String url, String ...Titulo) throws IOException {
+	public static void criarArquivo(String url, String ...Titulo) throws IOException {
 		
 		String filePath = new File("").getCanonicalPath()+"/data/";
 		File data = new File(filePath.concat(url));
@@ -36,10 +36,9 @@ public class OperadorArquivoCSV {
 	
 	public static void escreverArquivo (String url , String...dados) {
 		
-		
 		try{			
 			List<String> dadosExistentes=lerArquivo(url);
-			String linhaDados= String.join(";",dados);
+			String linhaDados= String.join(";",dados)+"\n";
 			
 			dadosExistentes.add(linhaDados);
 			
@@ -79,19 +78,17 @@ public class OperadorArquivoCSV {
 		}
 		return linha;
 	}
+	
 
-
-	public void atualizaArquivo(String url, String[] placas) throws IOException {
+	public static void atualizaArquivo(String url, String[] listaDados, String...titulo) throws IOException {
 		File arquivoCSV = new File(new File("").getCanonicalPath()+"/data/".concat(url));
-		//isto talvez tenha que ser mudado, criar uma variavel privada para o File das placas não ser recriado várias vezes
+		//isto talvez tenha que ser mudado, criar uma variavel privada para o File das titulo. não ser recriado várias vezes
 		FileWriter update = new FileWriter(arquivoCSV, false);
-		update.write("vaga;placa\n");
-		for(int i = 0; i < placas.length; i++){
-			if (i ==  placas.length-1){
-				update.write(i+1+";"+placas[i]);
-			}else{
-				update.write(i+1+";"+placas[i]+"\n");
-			}
+
+		update.write(String.join(";", titulo)+"\n");
+		
+		for(int i = 0; i < listaDados.length; i++){
+			update.append(i+1+";"+listaDados[i]+"\n");
 		}
 		update.close();
 	}
