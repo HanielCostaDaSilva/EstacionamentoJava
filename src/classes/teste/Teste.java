@@ -6,10 +6,9 @@ import classes.Estacionamento;
 
 public class Teste {
 	public static void main(String[] args) throws FilerException, Exception {
-		Estacionamento estac = new Estacionamento(10);
+		Estacionamento estac = new Estacionamento(5);
 		String[] aux2 = estac.listarGeral();
 	
-
 		
 		//Lista a quantidades de vagas livres
 

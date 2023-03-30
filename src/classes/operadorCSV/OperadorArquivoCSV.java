@@ -12,49 +12,67 @@ import java.util.List;
 public class OperadorArquivoCSV {
 	
 	/**
+	 * método responsável por criar um novo arquivo CSV, em uma determinada {@code url},e insere um título para cada coluna.
+	 * Caso o arquivo CSV já tenha sido criado, ele checa a quantidade de colunas preenchidas, se nenhuma tiver sido preenchida, ele inserirá o {@code colunaTitulo} na primeira linha.    
 	 * @param url
-	 * @param Titulo
+	 * @param colunaTitulo
 	 */
-	public static void criarArquivo(String url, String ...Titulo) {
-		
-		String filePath = new File("").getCanonicalPath()+"/data/";
+	public static void criarArquivo(String url, String ...colunaTitulo) throws Exception{
+		String filePath="";
+		try{
+
+			filePath = new File("").getCanonicalPath()+"/data/";
+		}
+		catch(IOException exception){
+			throw new Exception("Não foi possível criar um novo arquivo");
+		}
+
 		File data = new File(filePath.concat(url));
+		File arquivoCSV = new File(filePath.concat(url));
+		FileWriter escrevercolunaTitulo= new FileWriter(arquivoCSV);
+
 		if(!data.exists()) {
+			//Caso o arquivo que tenha sido criado não exista.
 			try {
-				File arquivoCSV = new File(filePath.concat(url));
 				arquivoCSV.createNewFile();
-				FileWriter escreverTitulo= new FileWriter(arquivoCSV);
-
-				escreverTitulo.write(String.join( ";", Titulo));
-
-				escreverTitulo.close();
-			
-			}
+				escrevercolunaTitulo.write(String.join( ";", colunaTitulo));
 				
+			}
+			
 			catch(Exception error) {
-				System.out.println("DEu erro ao tentar criar o arquivo: "+url);
+				System.out.println("Erro ao tentar criar o arquivo: "+url);
 			}
 		}
+		else if(lerArquivo(url).size()==0){ //checa se o arquvio foi criado, e está vazio
+			escrevercolunaTitulo.write(String.join( ";", colunaTitulo)); //Se estiver vazio, ele irá inserir o título das linhas. 
+		};
+		try{
+			escrevercolunaTitulo.close();
+		}
+		catch(Exception error) {
+			System.out.println("Não foi possível fechar o arquivo: "+url);
+		}
+		
 		
 	};
 	
 	public static void escreverArquivo (String url , String...dados) {
-		
-		try{			
+	
+		try{
 			List<String> dadosExistentes=lerArquivo(url);
-			String linhaDados= String.join(";",dados)+"\n";
+			String linhaDados= String.join(";",dados);
 			
 			dadosExistentes.add(linhaDados);
 			
 			//adicionar no csv
 			String todasLinhas= lerArquivo(dadosExistentes);
-			FileWriter arquivo = new FileWriter(new File("").getCanonicalPath()+"/data/".concat(url), true);
+			FileWriter arquivo = new FileWriter(new File("").getCanonicalPath()+"/data/".concat(url), false);
 			arquivo.write(todasLinhas);
 			arquivo.close();
 			
 		
 		} catch(Exception e){
-			System.out.println("Erro ao gerar o arquivo "+ url);
+			System.out.println("Erro ao tebtar escrever no arquivo "+ url);
 		}
 	}
 	
@@ -84,12 +102,12 @@ public class OperadorArquivoCSV {
 	}
 	
 
-	public static void atualizaArquivo(String url, String[] listaDados, String...titulo) throws IOException {
+	public static void atualizaArquivo(String url, String[] listaDados, String...colunatitulo) throws IOException {
 		File arquivoCSV = new File(new File("").getCanonicalPath()+"/data/".concat(url));
-		//isto talvez tenha que ser mudado, criar uma variavel privada para o File das titulo. não ser recriado várias vezes
+		//isto talvez tenha que ser mudado, criar uma variavel privada para o File das colunatitulo. não ser recriado várias vezes
 		FileWriter update = new FileWriter(arquivoCSV, false);
 
-		update.write(String.join(";", titulo)+"\n");
+		update.write(String.join(";", colunatitulo)+"\n");
 		
 		for(int i = 0; i < listaDados.length; i++){
 			update.append(i+1+";"+listaDados[i]+"\n");

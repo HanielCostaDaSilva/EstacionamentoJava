@@ -6,13 +6,15 @@ package classes;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 
+/*
+ *Esta é a classe Responsável pela interação do usuário.
+*/
 public class Valentinho {
 	public static void main(String[] args) {
 		Estacionamento estacionamento = null;
-		
 		try {
-			estacionamento = new Estacionamento(10);	//10 vagas
-			estacionamento.lerDados();
+			estacionamento = new Estacionamento(10);//10 vagas
+			estacionamento.lerDados();//Preenche as vagas do estacionamento com os dados presentes no arquivo.
 		} 
 		catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -27,21 +29,21 @@ public class Valentinho {
 		do{
 			try {
 				System.out.println("\n---------------------------------------------------");
-				System.out.println("VALETINHO DO IFPB  - " + LocalDateTime.now() );
+				System.out.println("VALENTINHO DO IFPB  - " + LocalDateTime.now() );
 				System.out.println("---------------------------------------------------");
 				System.out.println("Menu:");
 				System.out.println("0 - terminar programa");
 				System.out.println("1 - entrar carro");
 				System.out.println("2 - sair carro");
 				System.out.println("3 - consultar placa");
-				System.out.println("3 - transferir placa");
-				System.out.println("4 - listar geral");
-				System.out.println("5 - listar vagas livres");
+				System.out.println("4 - Transferir vaga");
+				System.out.println("5 - listar geral");
+				System.out.println("6 - listar vagas livres");
 				System.out.print("==>");
 				op = Integer.parseInt(teclado.nextLine());
 
 				switch(op) {
-				case 0 : 
+				case 0 : //Encerra o programa
 					System.out.println("Volte sempre!!!"); 
 					break;
 				case 1 : 
