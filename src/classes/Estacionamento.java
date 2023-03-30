@@ -74,6 +74,8 @@ public class Estacionamento {
 
 
 
+
+
 	public void sair(int vaga) throws Exception, FilerException {
 
 		if (!checarVagaExiste(vaga)) //checa se a vaga inserida pelo usuário de fato existe na lista 
@@ -95,6 +97,8 @@ public class Estacionamento {
 
 
 
+
+
 	public int consultarPlaca(String placa) {
 
 		for (int i = 0; i < this.placas.length; i++) {
@@ -104,6 +108,8 @@ public class Estacionamento {
 		}
 		return -1; // caso não ache a placa
 	};
+
+
 
 
 
@@ -125,6 +131,8 @@ public class Estacionamento {
 		this.gravarDados();
 
 	}
+
+
 
 	public String[] listarGeral() {
 
@@ -156,6 +164,7 @@ public class Estacionamento {
 	}
 
 	public void updatePlacas() {
+		this.dadosExistentes = OperadorArquivoCSV.lerArquivo(urlPlacas);
 		this.dadosExistentes = OperadorArquivoCSV.lerArquivo(urlPlacas);
 
 		for (int i = 1; i < dadosExistentes.size(); i++) {

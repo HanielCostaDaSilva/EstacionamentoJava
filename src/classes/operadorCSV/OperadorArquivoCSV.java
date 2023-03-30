@@ -11,7 +11,11 @@ import java.util.List;
 
 public class OperadorArquivoCSV {
 	
-	public static void criarArquivo(String url, String ...Titulo) throws IOException {
+	/**
+	 * @param url
+	 * @param Titulo
+	 */
+	public static void criarArquivo(String url, String ...Titulo) {
 		
 		String filePath = new File("").getCanonicalPath()+"/data/";
 		File data = new File(filePath.concat(url));
