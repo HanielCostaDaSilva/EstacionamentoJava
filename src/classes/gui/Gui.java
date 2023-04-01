@@ -116,7 +116,12 @@ public class Gui {
 		btnRemover.setBackground(new Color(237, 51, 59));
 		btnRemover.setBounds(221, 41, 117, 25);
 		frame.getContentPane().add(btnRemover);
-		
+		String[] livres = estacionamento.listarGeral();
+                String s="";
+                for(int i=0; i < livres.length; i++){
+                    s+=" "+livres[i]+"\n";
+                }
+                listaPlacas.setText(s);
 
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -132,10 +137,8 @@ public class Gui {
                 }
                 listaPlacas.setText(s);
             } catch (FilerException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
                 
@@ -156,14 +159,13 @@ public class Gui {
                     }
                     listaPlacas.setText(s);
                 } catch (FilerException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
+                } catch (Exception e) {     
                     e.printStackTrace();
                 }
 			}
 		});
+        
 		
 	}
 }

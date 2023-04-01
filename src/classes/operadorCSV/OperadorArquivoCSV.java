@@ -28,13 +28,14 @@ public class OperadorArquivoCSV {
 		}
 
 		File data = new File(filePath.concat(url));
-		File arquivoCSV = new File(filePath.concat(url));
-		FileWriter escrevercolunaTitulo= new FileWriter(arquivoCSV);
-
+		
+		FileWriter escrevercolunaTitulo= new FileWriter(data,true);
+		
 		if(!data.exists()) {
 			//Caso o arquivo que tenha sido criado não exista.
 			try {
-				arquivoCSV.createNewFile();
+				data.createNewFile();
+				System.out.println("asd");
 				escrevercolunaTitulo.write(String.join( ";", colunaTitulo));
 				
 			}
@@ -43,7 +44,8 @@ public class OperadorArquivoCSV {
 				System.out.println("Erro ao tentar criar o arquivo: "+url);
 			}
 		}
-		else if(lerArquivo(url).size()==0){ //checa se o arquvio foi criado, e está vazio
+	
+		if(lerArquivo(url).size()==0){ //checa se o arquvio foi criado, e está vazio
 			escrevercolunaTitulo.write(String.join( ";", colunaTitulo)); //Se estiver vazio, ele irá inserir o título das linhas. 
 		};
 		try{
