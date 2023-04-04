@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -213,4 +214,10 @@ public class Estacionamento {
 			e.printStackTrace();
 		}
 	}
+
+	public List<String> HistoricoData(){
+		List<String> linhasCSV = OperadorArquivoCSV.lerArquivo(urlHistorico);
+		Collections.reverse(linhasCSV);
+		return linhasCSV;
+	};
 }
