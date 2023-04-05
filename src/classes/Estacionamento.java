@@ -202,7 +202,7 @@ public class Estacionamento {
 	}
 
 	public List<String> HistoricoData(){
-		List<String> linhasCSV = OperadorArquivoCSV.lerArquivo(urlHistorico);
+		List<String> linhasCSV = OperadorArquivoCSV.lerArquivo("historico.csv");
 		Collections.reverse(linhasCSV);
 		return linhasCSV;
 	};
