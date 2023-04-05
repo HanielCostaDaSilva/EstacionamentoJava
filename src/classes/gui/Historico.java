@@ -1,30 +1,26 @@
 package classes.gui;
-import classes.*;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-
-import javax.annotation.processing.FilerException;
-
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
-
-
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-import javax.swing.JLabel;
-import javax.swing.border.LineBorder;
-import javax.swing.JButton;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
+
+import javax.annotation.processing.FilerException;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+
+import classes.Estacionamento;
 
 public class Historico {
 	private int page = 1;
 	private JFrame frame;
 	private JTable table;
-    private ArrayList dados = new ArrayList();
+    private ArrayList<String> dados = new ArrayList<String>();
 	/**
 	 * Launch the application.
 	 */

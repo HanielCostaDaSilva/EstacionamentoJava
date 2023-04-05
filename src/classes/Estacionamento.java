@@ -33,7 +33,7 @@ public class Estacionamento {
 	
 	
     /**
-     * checa se uma vaga está vazia ou não no estacionamento, caso esteja retorna {@code True}.
+     * checa se uma vaga está vazia ou não no estacionamento, caso estejÁ retorna {@code True}.
 	 * A posição precisa ser um {@code int }{@value >=1}, pois será decrementado para poder ser consultado. 
      * @return  a boolean.
      */
@@ -63,9 +63,9 @@ public class Estacionamento {
 	public void entrar(String placa, int vaga) throws Exception, FilerException {
 
 		if (!checarVagaExiste(vaga)) //checa se a vaga inserida pelo usuário de fato existe na lista 
-			throw new Exception("VAGA INVALIDA");
+			throw new Exception("VAGA"+ vaga + " INVALIDA");
 		if (!checarVagaEstaVazia(vaga)) //checa se não existe nenhum carro na vaga.
-			throw new Exception("VAGA JA PREENCHIDA");
+			throw new Exception("VAGA"+ vaga + " JÁ PREENCHIDA");
 
 		this.placas[vaga - 1] = placa;
 		OperadorArquivoCSV.escreverArquivo(urlHistorico,this.getMomentoAtual(), Integer.toString(vaga), placa, "entrada");
@@ -73,16 +73,12 @@ public class Estacionamento {
 
 	};
 
-
-
-
-
 	public void sair(int vaga) throws Exception, FilerException {
 
 		if (!checarVagaExiste(vaga)) //checa se a vaga inserida pelo usuário de fato existe na lista 
-			throw new Exception("VAGA INVALIDA");
+			throw new Exception("VAGA"+ vaga + " INVALIDA");
 		if (checarVagaEstaVazia(vaga)) //checa se existe algum carro na vaga, caso não haja, retorna um erro.
-			throw new Exception("VAGA JA ESTA VAZIA");
+			throw new Exception("VAGA"+ vaga + " JÁ ESTA VAZIA");
 
 		String placa = this.placas[vaga - 1];
 		this.placas[vaga - 1] = null;
@@ -96,10 +92,6 @@ public class Estacionamento {
 
 	};
 
-
-
-
-
 	public int consultarPlaca(String placa) {
 
 		for (int i = 0; i < this.placas.length; i++) {
@@ -109,10 +101,6 @@ public class Estacionamento {
 		}
 		return -1; // caso não ache a placa
 	};
-
-
-
-
 
 	public void transferir(int vaga1, int vaga2) throws Exception {
 		// A vaga1 deve existir não estA vazia.
@@ -132,8 +120,6 @@ public class Estacionamento {
 		this.gravarDados();
 
 	}
-
-
 
 	public String[] listarGeral() {
 

@@ -1,26 +1,22 @@
 package classes.gui;
-import classes.*;
-
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 import javax.annotation.processing.FilerException;
 import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+
+import classes.Estacionamento;
 
 
-public class Gui {
+public class JanelaPrincipal {
 
 	private JFrame frame;
 	private JTextField placaField;
@@ -30,10 +26,11 @@ public class Gui {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Gui window = new Gui();
+					JanelaPrincipal window = new JanelaPrincipal();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +42,7 @@ public class Gui {
 	/**
 	 * Create the application.
 	 */
-	public Gui() {
+	public JanelaPrincipal() {
         try {
             Estacionamento estacionamento = new Estacionamento(10);
             initialize(estacionamento);
