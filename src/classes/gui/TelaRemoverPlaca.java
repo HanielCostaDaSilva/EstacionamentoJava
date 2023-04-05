@@ -25,7 +25,10 @@ public class TelaRemoverPlaca {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	
+
+	
+	 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -40,6 +43,8 @@ public class TelaRemoverPlaca {
 		});
 	}
 
+
+
 	/**
 	 * Create the application.
 	 */
@@ -47,9 +52,11 @@ public class TelaRemoverPlaca {
 		this.estacionamento=est;
 		initialize();
 	}
+	
 	/**
 	 * Remove a license plate from the parking.
 	*/
+	
 	private String RemovePlate(int vaga){
 		try{
 			this.estacionamento.sair(vaga);

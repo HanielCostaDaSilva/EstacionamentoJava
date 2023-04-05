@@ -27,13 +27,12 @@ public class TelaCadastrarPlaca {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	 
+	  	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//teste			
 					Estacionamento E1=new Estacionamento(10);
-
 					TelaCadastrarPlaca window = new TelaCadastrarPlaca(E1);
 					window.frmEntrada.setVisible(true);
 				} catch (Exception e) {
@@ -47,7 +46,6 @@ public class TelaCadastrarPlaca {
 	 * Create the application.
 	 */
 	public TelaCadastrarPlaca(Estacionamento estacionamento) {
-		//só para teste
 		try{
 			this.estacionamento= estacionamento;
 		}catch (Exception e){
@@ -71,7 +69,7 @@ public class TelaCadastrarPlaca {
 		JButton EntradaPlacaBtn = new JButton("Entrar");
 		EntradaPlacaBtn.setForeground(Color.WHITE);
 		EntradaPlacaBtn.setBounds(98, 204, 243, 57);
-		EntradaPlacaBtn.setBackground(new Color(0, 255, 0));
+		EntradaPlacaBtn.setBackground(new Color(45,135,32));
 		
 		EntradaPlacaBtn.addActionListener(new ActionListener() {
 			
