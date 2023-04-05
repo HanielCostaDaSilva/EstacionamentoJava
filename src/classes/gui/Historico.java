@@ -1,10 +1,13 @@
 package classes.gui;
+import classes.operadorCSV.*;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.annotation.processing.FilerException;
 import javax.swing.JButton;
@@ -51,7 +54,8 @@ public class Historico {
 		
 	}
     public void updateData(Estacionamento estacionamento){
-        dados = (ArrayList) estacionamento.HistoricoData();
+        dados = (ArrayList<String>) OperadorArquivoCSV.lerArquivo("historico.csv");
+		Collections.reverse(dados);
         dados.remove(dados.size()-1);
     }
 
