@@ -1,5 +1,5 @@
-package classes.teste;
-import classes.gui.*;
+package teste;
+import gui.*;
 
 
 

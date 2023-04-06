@@ -1,5 +1,5 @@
-package classes.gui;
-import classes.operadorCSV.*;
+package gui;
+import operadorCSV.*;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;

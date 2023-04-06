@@ -1,4 +1,4 @@
-package classes.gui;
+package gui;
 
 import java.awt.EventQueue;
 
@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
 
 import classes.Estacionamento;
-import classes.gui.ferramentas.IntegerOnlyFilter;
+import gui.tools.IntegerOnlyFilter;
 
 public class TelaCadastrarPlaca {
 
@@ -63,7 +63,7 @@ public class TelaCadastrarPlaca {
 		frmEntrada.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmEntrada.setResizable(false);
 		frmEntrada.setTitle("Entrada");
-		frmEntrada.setBackground(Color.LIGHT_GRAY);
+		frmEntrada.setBackground(new Color(192, 192, 192));
 		frmEntrada.setBounds(100, 100, 450, 300);
 		
 		JButton EntradaPlacaBtn = new JButton("Entrar");
@@ -137,6 +137,10 @@ public class TelaCadastrarPlaca {
 
 		FormularioPainel.add(mensagemCode);
 		mensagemCode.setColumns(10);
+	}
+
+	public void setVisible(){
+		this.frmEntrada.setVisible(true);
 	}
 
 	private String RegistrarNovaPlaca(String placa, int vaga){

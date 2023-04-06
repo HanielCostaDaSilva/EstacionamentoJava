@@ -1,4 +1,4 @@
-package classes.teste;
+package teste;
 
 import javax.annotation.processing.FilerException;
 

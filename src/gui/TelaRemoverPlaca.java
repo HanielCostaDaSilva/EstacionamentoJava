@@ -1,4 +1,4 @@
-package classes.gui;
+package gui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -13,11 +13,11 @@ import javax.swing.JTextField;
 import javax.swing.text.AbstractDocument;
 
 import classes.Estacionamento;
-import classes.gui.ferramentas.IntegerOnlyFilter;
+import gui.tools.IntegerOnlyFilter;
 
 public class TelaRemoverPlaca {
 
-	private JFrame frmSaida;
+	private JFrame saidaPlacaFrame;
 	private JTextField SaidaInput;
 
 	private Estacionamento estacionamento;
@@ -25,17 +25,14 @@ public class TelaRemoverPlaca {
 	/**
 	 * Launch the application.
 	 */
-	
-
-	
-	 	public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//só para teste
-					Estacionamento E1=new Estacionamento(10);
+					// só para teste
+					Estacionamento E1 = new Estacionamento(10);
 					TelaRemoverPlaca window = new TelaRemoverPlaca(E1);
-					window.frmSaida.setVisible(true);
+					window.saidaPlacaFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,41 +40,41 @@ public class TelaRemoverPlaca {
 		});
 	}
 
-
-
 	/**
 	 * Create the application.
 	 */
-	public TelaRemoverPlaca(Estacionamento est){
-		this.estacionamento=est;
+	public TelaRemoverPlaca(Estacionamento est) {
+		this.estacionamento = est;
 		initialize();
 	}
-	
+
 	/**
 	 * Remove a license plate from the parking.
-	*/
-	
-	private String RemovePlate(int vaga){
-		try{
+	 */
+
+	private String RemovePlate(int vaga) {
+		try {
 			this.estacionamento.sair(vaga);
-			return "Vaga: "+ vaga + " foi liberada com sucesso";
-		}catch(Exception e){
+			return "Vaga: " + vaga + " foi liberada com sucesso";
+		} catch (Exception e) {
 			return e.getMessage();
 		}
 
 	}
+
 	/**
 	 * Initialize the contents of the frame.
-	*/
+	 */
 	private void initialize() {
-		frmSaida = new JFrame();
-		frmSaida.setTitle("Saída");
-		frmSaida.setBackground(Color.LIGHT_GRAY);
-		frmSaida.setResizable(false);
-		frmSaida.setBounds(100, 100, 386, 240);
-		frmSaida.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frmSaida.getContentPane().setLayout(null);
-		
+		saidaPlacaFrame = new JFrame();
+		saidaPlacaFrame.setTitle("Saída");
+
+		saidaPlacaFrame.setBackground(new Color(192, 192, 192));
+		saidaPlacaFrame.setResizable(false);
+		saidaPlacaFrame.setBounds(100, 100, 386, 240);
+		saidaPlacaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		saidaPlacaFrame.getContentPane().setLayout(null);
+
 		SaidaInput = new JTextField();
 		SaidaInput.setBounds(92, 56, 233, 54);
 		SaidaInput.setToolTipText("");
@@ -86,13 +83,12 @@ public class TelaRemoverPlaca {
 
 		((AbstractDocument) SaidaInput.getDocument()).setDocumentFilter(new IntegerOnlyFilter());
 
-		frmSaida.getContentPane().add(SaidaInput);
-		
+		saidaPlacaFrame.getContentPane().add(SaidaInput);
+
 		JLabel VagaLabel = new JLabel("Vaga");
 		VagaLabel.setBounds(31, 61, 51, 31);
 		VagaLabel.setFont(new Font("Source Serif Pro Light", Font.BOLD, 22));
-		frmSaida.getContentPane().add(VagaLabel);
-
+		saidaPlacaFrame.getContentPane().add(VagaLabel);
 
 		JTextField mensagemCode = new JTextField();
 		mensagemCode.setForeground(Color.ORANGE);
@@ -102,7 +98,7 @@ public class TelaRemoverPlaca {
 		mensagemCode.setBounds(10, 120, 350, 20);
 		mensagemCode.setText("Mensagem de Status");
 
-		frmSaida.add(mensagemCode);
+		saidaPlacaFrame.add(mensagemCode);
 		mensagemCode.setColumns(10);
 
 		JButton RegistrarSaidaBtn = new JButton("Registrar Saída");
@@ -111,23 +107,27 @@ public class TelaRemoverPlaca {
 		RegistrarSaidaBtn.setBounds(10, 136, 350, 54);
 
 		RegistrarSaidaBtn.addActionListener(new ActionListener() {
-			
-			public void   actionPerformed(ActionEvent e){
+
+			public void actionPerformed(ActionEvent e) {
 				int VagaSaida;
-				try{
-					VagaSaida= Integer.parseInt(SaidaInput.getText());
-					
-				}catch(Exception E){
+				try {
+					VagaSaida = Integer.parseInt(SaidaInput.getText());
+
+				} catch (Exception E) {
 					mensagemCode.setText("Ops... Algum campo ficou em branco");
 					return;
 				}
 
-				String msg=RemovePlate(VagaSaida);
+				String msg = RemovePlate(VagaSaida);
 				mensagemCode.setText(msg);
 				SaidaInput.setText("");
 			}
 		});
 
-		frmSaida.getContentPane().add(RegistrarSaidaBtn);
+		saidaPlacaFrame.getContentPane().add(RegistrarSaidaBtn);
+	}
+
+	public void setVisible() {
+		this.saidaPlacaFrame.setVisible(true);
 	}
 }

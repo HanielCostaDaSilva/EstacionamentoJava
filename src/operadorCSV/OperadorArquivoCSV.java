@@ -1,4 +1,4 @@
-package classes.operadorCSV;
+package operadorCSV;
 
 import java.io.File;
 import java.io.FileWriter;
