@@ -17,13 +17,19 @@ import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import classes.Estacionamento;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
 
 public class JanelaPrincipal {
 
 	private JFrame frmMenuPrincipal;
-
 	private Estacionamento estacionamento;
 
+	private static TelaCadastrarPlaca telaEntrada = null;
+	private static TelaRemoverPlaca telaSaida = null;
+
+	// private static TelaTransferirPlaca telaTransferir = null;
 	/**
 	 * Launch the application.
 	 */
@@ -85,33 +91,36 @@ public class JanelaPrincipal {
 		registrarSaidaBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-
-				TelaRemoverPlaca telaSairPlaca = new TelaRemoverPlaca(estacionamento);
-				telaSairPlaca.setVisible();
+				telaSaida = new TelaRemoverPlaca(estacionamento);
+				telaSaida.setVisible();
 			}
 		});
 
-		JButton registrarEntradaBtm = new JButton("Registrar entrada");
-		registrarEntradaBtm.setFont(new Font("Yu Gothic Medium", Font.BOLD, 13));
-		registrarEntradaBtm.setBackground(new Color(45, 132, 32));
-		registrarEntradaBtm.setForeground(new Color(255, 255, 255));
+		JButton registrarEntradaBtn = new JButton("Registrar entrada");
+		registrarEntradaBtn.setFont(new Font("Yu Gothic Medium", Font.BOLD, 13));
+		registrarEntradaBtn.setBackground(new Color(45, 132, 32));
+		registrarEntradaBtn.setForeground(new Color(255, 255, 255));
 
-		registrarEntradaBtm.addActionListener(new ActionListener() {
+		registrarEntradaBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastrarPlaca telaEntrarPlaca = new TelaCadastrarPlaca(estacionamento);
-				telaEntrarPlaca.setVisible();
+				telaEntrada = new TelaCadastrarPlaca(estacionamento);
+				telaEntrada.setVisible();
+
 			}
 		});
 
-		JButton btnRegistrarTransferncia = new JButton("Registrar Transferência");
-		btnRegistrarTransferncia.setFont(new Font("Yu Gothic Medium", Font.BOLD, 13));
-		btnRegistrarTransferncia.addActionListener(new ActionListener() {
+		JButton registrarTransferenciaBtn = new JButton("Registrar Transferência");
+		registrarTransferenciaBtn.setFont(new Font("Yu Gothic Medium", Font.BOLD, 13));
+		registrarTransferenciaBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				telaEntrada = new TelaCadastrarPlaca(estacionamento);
+				telaEntrada.setVisible();
 			}
 		});
-		btnRegistrarTransferncia.setForeground(new Color(255, 255, 255));
-		btnRegistrarTransferncia.setBackground(new Color(187, 194, 54));
+		registrarTransferenciaBtn.setForeground(new Color(255, 255, 255));
+		registrarTransferenciaBtn.setBackground(new Color(187, 194, 54));
 
 		GroupLayout gl_operacoesBasicasPanel = new GroupLayout(operacoesBasicasPanel);
 		gl_operacoesBasicasPanel.setHorizontalGroup(
@@ -119,24 +128,24 @@ public class JanelaPrincipal {
 						.addGroup(gl_operacoesBasicasPanel.createSequentialGroup()
 								.addContainerGap()
 								.addGroup(gl_operacoesBasicasPanel.createParallelGroup(Alignment.LEADING)
-										.addComponent(btnRegistrarTransferncia, Alignment.TRAILING,
+										.addComponent(registrarTransferenciaBtn, Alignment.TRAILING,
 												GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
 										.addComponent(registrarSaidaBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
 												273, Short.MAX_VALUE)
-										.addComponent(registrarEntradaBtm, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
+										.addComponent(registrarEntradaBtn, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE,
 												273, Short.MAX_VALUE))
 								.addContainerGap()));
 		gl_operacoesBasicasPanel.setVerticalGroup(
 				gl_operacoesBasicasPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_operacoesBasicasPanel.createSequentialGroup()
 								.addGap(5)
-								.addComponent(registrarEntradaBtm, GroupLayout.PREFERRED_SIZE, 64,
+								.addComponent(registrarEntradaBtn, GroupLayout.PREFERRED_SIZE, 64,
 										GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.UNRELATED)
 								.addComponent(registrarSaidaBtn, GroupLayout.PREFERRED_SIZE, 62,
 										GroupLayout.PREFERRED_SIZE)
 								.addGap(18)
-								.addComponent(btnRegistrarTransferncia, GroupLayout.PREFERRED_SIZE, 72,
+								.addComponent(registrarTransferenciaBtn, GroupLayout.PREFERRED_SIZE, 72,
 										GroupLayout.PREFERRED_SIZE)
 								.addContainerGap(64, Short.MAX_VALUE)));
 		operacoesBasicasPanel.setLayout(gl_operacoesBasicasPanel);
@@ -153,14 +162,23 @@ public class JanelaPrincipal {
 		vagasGeralTextArea.setEnabled(false);
 		vagasGeralTextArea.setEditable(false);
 		vagasGeralTextArea.setBounds(541, 147, 213, 293);
+
+		String[] livres = estacionamento.listarGeral();
+		for (String i : livres) {
+			vagasGeralTextArea.setText(vagasGeralTextArea.getText() + i + "\n");
+		}
+		;
+
 		frmMenuPrincipal.getContentPane().add(vagasGeralTextArea);
 
-		JButton consultarHistoricoBtn = new JButton("Consultar Histórico");
-		consultarHistoricoBtn.setForeground(Color.DARK_GRAY);
-		consultarHistoricoBtn.setFont(new Font("Yu Gothic Medium", Font.BOLD, 13));
-		consultarHistoricoBtn.setBackground(Color.PINK);
-		consultarHistoricoBtn.setBounds(233, 385, 279, 55);
-		frmMenuPrincipal.getContentPane().add(consultarHistoricoBtn);
+		/*
+		 * JButton consultarHistoricoBtn = new JButton("Consultar Histórico");
+		 * consultarHistoricoBtn.setForeground(Color.DARK_GRAY);
+		 * consultarHistoricoBtn.setFont(new Font("Yu Gothic Medium", Font.BOLD, 13));
+		 * consultarHistoricoBtn.setBackground(Color.PINK);
+		 * consultarHistoricoBtn.setBounds(233, 385, 279, 55);
+		 * frmMenuPrincipal.getContentPane().add(consultarHistoricoBtn);
+		 */
 
 		JLabel vagasDisponiveisLabel = new JLabel("Vagas Disponíveis");
 		vagasDisponiveisLabel.setLabelFor(vagaLivreTextArea);
@@ -173,10 +191,83 @@ public class JanelaPrincipal {
 		vagasEmGeralLabel.setFont(new Font("Yu Gothic Medium", Font.BOLD, 15));
 		vagasEmGeralLabel.setBounds(543, 119, 197, 30);
 		frmMenuPrincipal.getContentPane().add(vagasEmGeralLabel);
-		frmMenuPrincipal.setVisible(true);
-		String[] livres = estacionamento.listarGeral();
-		for (int i = 0; i < livres.length; i++) {
-		}
 
+		JMenuBar menuPrincipal = new JMenuBar();
+		frmMenuPrincipal.setJMenuBar(menuPrincipal);
+
+		JMenu RegistrarMenu = new JMenu("Registrar");
+		menuPrincipal.add(RegistrarMenu);
+
+		JMenuItem registrarEntradaMenuItem = new JMenuItem("Entrada");
+
+		registrarEntradaMenuItem.setBackground(new Color(45, 132, 32));
+		registrarEntradaMenuItem.setForeground(new Color(255, 255, 255));
+
+		registrarEntradaMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				registrarEntradaBtn.doClick(); // Executa a ação do botão
+			}
+		});
+
+		RegistrarMenu.add(registrarEntradaMenuItem);
+
+		JMenuItem registrarSaidaMenuItem = new JMenuItem("Saída");
+		registrarSaidaMenuItem.setBackground(new Color(132, 45, 32));
+		registrarSaidaMenuItem.setForeground(new Color(255, 255, 255));
+
+		registrarSaidaMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				registrarSaidaBtn.doClick(); // Executa a ação do botão
+			}
+		});
+
+		RegistrarMenu.add(registrarSaidaMenuItem);
+
+		JMenuItem registrarTransferenciaMenuItem = new JMenuItem("Transferência");
+		registrarTransferenciaMenuItem.setBackground(new Color(187, 194, 54));
+		registrarTransferenciaMenuItem.setForeground(new Color(255, 255, 255));
+		registrarTransferenciaMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				registrarTransferenciaBtn.doClick(); // Executa a ação do botão
+			}
+		});
+		RegistrarMenu.add(registrarTransferenciaMenuItem);
+
+		JMenu consultarMenu = new JMenu("Consultar");
+		menuPrincipal.add(consultarMenu);
+
+		JMenuItem consultarHistoricoMenuItem = new JMenuItem("Histórico");
+		consultarMenu.add(consultarHistoricoMenuItem);
+
+		JMenuItem consultarVagaGeralMenuItem = new JMenuItem("Todas as Vagas");
+		consultarMenu.add(consultarVagaGeralMenuItem);
+
+		JMenuItem consultarVagasLivresMenuItem = new JMenuItem("Vagas Livres");
+
+		consultarMenu.add(consultarVagasLivresMenuItem);
+		frmMenuPrincipal.setVisible(true);
+
+	};
+
+	public void getJanela(String janela) {
+
+		switch (janela) {
+			case "ENTRADA":
+				if (telaEntrada == null) {
+					telaEntrada = new TelaCadastrarPlaca(estacionamento);
+				}
+
+			case "SAIDA":
+				if (telaSaida == null) {
+					telaSaida = new TelaRemoverPlaca(estacionamento);
+				}
+				/*
+				 * case "TRANSFERENCIA":
+				 * if (telaTransferencia == null) {
+				 * telaTransferencia = new TelaCadastrarPlaca(estacionamento);
+				 * }
+				 * 
+				 */
+		}
 	}
 }
