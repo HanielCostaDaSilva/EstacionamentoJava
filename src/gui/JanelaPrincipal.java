@@ -26,10 +26,10 @@ public class JanelaPrincipal {
 	private JFrame frmMenuPrincipal;
 	private Estacionamento estacionamento;
 
-	private static TelaCadastrarPlaca telaEntrada = null;
-	private static TelaRemoverPlaca telaSaida = null;
+	private TelaCadastrarPlaca telaEntrada = null;
+	private TelaRemoverPlaca telaSaida = null;
 
-	// private static TelaTransferirPlaca telaTransferir = null;
+	private TelaTransferirPlaca telaTransferir = null;
 	/**
 	 * Launch the application.
 	 */
@@ -115,8 +115,8 @@ public class JanelaPrincipal {
 		registrarTransferenciaBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				telaEntrada = new TelaCadastrarPlaca(estacionamento);
-				telaEntrada.setVisible();
+				telaTransferir = new TelaTransferirPlaca(estacionamento);
+				telaTransferir.setVisible();
 			}
 		});
 		registrarTransferenciaBtn.setForeground(new Color(255, 255, 255));
@@ -166,19 +166,9 @@ public class JanelaPrincipal {
 		String[] livres = estacionamento.listarGeral();
 		for (String i : livres) {
 			vagasGeralTextArea.setText(vagasGeralTextArea.getText() + i + "\n");
-		}
-		;
+		};
 
 		frmMenuPrincipal.getContentPane().add(vagasGeralTextArea);
-
-		/*
-		 * JButton consultarHistoricoBtn = new JButton("Consultar Histórico");
-		 * consultarHistoricoBtn.setForeground(Color.DARK_GRAY);
-		 * consultarHistoricoBtn.setFont(new Font("Yu Gothic Medium", Font.BOLD, 13));
-		 * consultarHistoricoBtn.setBackground(Color.PINK);
-		 * consultarHistoricoBtn.setBounds(233, 385, 279, 55);
-		 * frmMenuPrincipal.getContentPane().add(consultarHistoricoBtn);
-		 */
 
 		JLabel vagasDisponiveisLabel = new JLabel("Vagas Disponíveis");
 		vagasDisponiveisLabel.setLabelFor(vagaLivreTextArea);

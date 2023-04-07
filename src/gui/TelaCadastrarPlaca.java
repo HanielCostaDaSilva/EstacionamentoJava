@@ -15,24 +15,26 @@ import javax.swing.text.AbstractDocument;
 
 import classes.Estacionamento;
 import gui.tools.IntegerOnlyFilter;
+import javax.swing.SwingConstants;
 
 public class TelaCadastrarPlaca {
 
 	private JFrame frmEntrada;
 	private JTextField PlacaInput;
 	private JTextField VagaInput;
-	private JTextField mensagemCode;
 
 	private Estacionamento estacionamento;
+	private JTextField mensagemCode;
+
 	/**
 	 * Launch the application.
 	 */
-	 
-	  	public static void main(String[] args) {
+
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Estacionamento E1=new Estacionamento(10);
+					Estacionamento E1 = new Estacionamento(10);
 					TelaCadastrarPlaca window = new TelaCadastrarPlaca(E1);
 					window.frmEntrada.setVisible(true);
 				} catch (Exception e) {
@@ -46,11 +48,12 @@ public class TelaCadastrarPlaca {
 	 * Create the application.
 	 */
 	public TelaCadastrarPlaca(Estacionamento estacionamento) {
-		try{
-			this.estacionamento= estacionamento;
-		}catch (Exception e){
+		try {
+			this.estacionamento = estacionamento;
+		} catch (Exception e) {
 			mensagemCode.setText(e.getMessage());
-		};
+		}
+		;
 
 		initialize();
 	}
@@ -64,60 +67,61 @@ public class TelaCadastrarPlaca {
 		frmEntrada.setResizable(false);
 		frmEntrada.setTitle("Entrada");
 		frmEntrada.setBackground(new Color(192, 192, 192));
-		frmEntrada.setBounds(100, 100, 450, 300);
-		
+		frmEntrada.setBounds(100, 100, 427, 299);
+
 		JButton EntradaPlacaBtn = new JButton("Entrar");
 		EntradaPlacaBtn.setForeground(Color.WHITE);
-		EntradaPlacaBtn.setBounds(98, 204, 243, 57);
-		EntradaPlacaBtn.setBackground(new Color(45,135,32));
-		
-		EntradaPlacaBtn.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-			String placa;
-			int vaga;
-			try{
-				placa= PlacaInput.getText().toUpperCase();
-				vaga= Integer.parseInt(VagaInput.getText());
-			}
+		EntradaPlacaBtn.setBounds(10, 204, 391, 57);
+		EntradaPlacaBtn.setBackground(new Color(45, 135, 32));
 
-			catch(Exception E){
-			mensagemCode.setText("Ops... Algum campo ficou em branco");
-			return;
-		};
-			
-			String msg= RegistrarNovaPlaca(placa, vaga);
-			VagaInput.setText("");
-			PlacaInput.setText("");
-			mensagemCode.setText(msg);
+		EntradaPlacaBtn.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				String placa;
+				int vaga;
+				try {
+					placa = PlacaInput.getText().toUpperCase();
+					vaga = Integer.parseInt(VagaInput.getText());
+				}
+
+				catch (Exception E) {
+					mensagemCode.setText("Ops... Algum campo ficou em branco");
+					return;
+				}
+				;
+
+				String msg = RegistrarNovaPlaca(placa, vaga);
+				VagaInput.setText("");
+				PlacaInput.setText("");
+				mensagemCode.setText(msg);
 			}
 		});
 		frmEntrada.getContentPane().setLayout(null);
 		frmEntrada.getContentPane().add(EntradaPlacaBtn);
-		
+
 		JPanel FormularioPainel = new JPanel();
-		FormularioPainel.setBounds(10, 11, 414, 192);
+		FormularioPainel.setBounds(10, 11, 391, 192);
 		frmEntrada.getContentPane().add(FormularioPainel);
 		FormularioPainel.setLayout(null);
-		
+
 		JLabel PlacaLabel = new JLabel("Placa");
 		PlacaLabel.setLabelFor(PlacaLabel);
 		PlacaLabel.setFont(new Font("Source Serif Pro Light", Font.BOLD, 22));
 		PlacaLabel.setBounds(10, 31, 77, 40);
 		FormularioPainel.add(PlacaLabel);
-		
+
 		JLabel VagaLabel = new JLabel("Vaga");
 		VagaLabel.setLabelFor(VagaLabel);
 		VagaLabel.setFont(new Font("Source Serif Pro Light", Font.BOLD, 22));
 		VagaLabel.setBounds(10, 95, 77, 40);
 		FormularioPainel.add(VagaLabel);
-		
+
 		PlacaInput = new JTextField();
 		PlacaInput.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
 		PlacaInput.setBounds(109, 35, 264, 40);
 		FormularioPainel.add(PlacaInput);
 		PlacaInput.setColumns(10);
-		
+
 		VagaInput = new JTextField();
 		VagaInput.setToolTipText("");
 		VagaInput.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
@@ -126,29 +130,30 @@ public class TelaCadastrarPlaca {
 		((AbstractDocument) VagaInput.getDocument()).setDocumentFilter(new IntegerOnlyFilter());
 
 		FormularioPainel.add(VagaInput);
-		
+
 		mensagemCode = new JTextField();
-		mensagemCode.setForeground(new Color(36, 34, 34));
+		mensagemCode.setHorizontalAlignment(SwingConstants.CENTER);
+		mensagemCode.setText("Mensagem de Status");
+		mensagemCode.setForeground(Color.ORANGE);
+		mensagemCode.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 15));
 		mensagemCode.setEnabled(false);
 		mensagemCode.setEditable(false);
-		mensagemCode.setBackground(new Color(36, 34, 34));
-		mensagemCode.setBounds(10, 161, 394, 20);
-		mensagemCode.setText("Mensagem de Status");
-
-		FormularioPainel.add(mensagemCode);
 		mensagemCode.setColumns(10);
+		mensagemCode.setBackground(new Color(36, 34, 34));
+		mensagemCode.setBounds(0, 157, 391, 35);
+		FormularioPainel.add(mensagemCode);
 	}
 
-	public void setVisible(){
+	public void setVisible() {
 		this.frmEntrada.setVisible(true);
 	}
 
-	private String RegistrarNovaPlaca(String placa, int vaga){
-		try{
+	private String RegistrarNovaPlaca(String placa, int vaga) {
+		try {
 			this.estacionamento.entrar(placa, vaga);
-			return "Placa: "+placa +" inserido na Vaga "+ vaga;
+			return "Placa: " + placa + " inserido na Vaga " + vaga;
 
-		}catch(Exception e){
+		} catch (Exception e) {
 			return e.getMessage();
 		}
 	}

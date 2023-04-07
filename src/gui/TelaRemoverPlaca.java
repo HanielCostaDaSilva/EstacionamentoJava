@@ -14,6 +14,7 @@ import javax.swing.text.AbstractDocument;
 
 import classes.Estacionamento;
 import gui.tools.IntegerOnlyFilter;
+import javax.swing.JPanel;
 
 public class TelaRemoverPlaca {
 
@@ -75,36 +76,40 @@ public class TelaRemoverPlaca {
 		saidaPlacaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		saidaPlacaFrame.getContentPane().setLayout(null);
 
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 350, 137);
+		saidaPlacaFrame.getContentPane().add(panel);
+		panel.setLayout(null);
+
+		JTextField mensagemCode = new JTextField();
+		mensagemCode.setBounds(0, 102, 350, 35);
+		panel.add(mensagemCode);
+		mensagemCode.setFont(new Font("Tw Cen MT Condensed", Font.PLAIN, 15));
+		mensagemCode.setForeground(Color.ORANGE);
+		mensagemCode.setEnabled(false);
+		mensagemCode.setEditable(false);
+		mensagemCode.setBackground(new Color(36, 34, 34));
+		mensagemCode.setText("Mensagem de Status");
+		mensagemCode.setColumns(10);
+
+		JLabel VagaLabel = new JLabel("Vaga");
+		VagaLabel.setBounds(10, 34, 51, 31);
+		panel.add(VagaLabel);
+		VagaLabel.setFont(new Font("Source Serif Pro Light", Font.BOLD, 22));
+
 		SaidaInput = new JTextField();
-		SaidaInput.setBounds(92, 56, 233, 54);
+		SaidaInput.setBounds(71, 30, 233, 54);
+		panel.add(SaidaInput);
 		SaidaInput.setToolTipText("");
 		SaidaInput.setFont(new Font("Yu Gothic Medium", Font.BOLD, 16));
 		SaidaInput.setColumns(10);
 
 		((AbstractDocument) SaidaInput.getDocument()).setDocumentFilter(new IntegerOnlyFilter());
 
-		saidaPlacaFrame.getContentPane().add(SaidaInput);
-
-		JLabel VagaLabel = new JLabel("Vaga");
-		VagaLabel.setBounds(31, 61, 51, 31);
-		VagaLabel.setFont(new Font("Source Serif Pro Light", Font.BOLD, 22));
-		saidaPlacaFrame.getContentPane().add(VagaLabel);
-
-		JTextField mensagemCode = new JTextField();
-		mensagemCode.setForeground(Color.ORANGE);
-		mensagemCode.setEnabled(false);
-		mensagemCode.setEditable(false);
-		mensagemCode.setBackground(new Color(36, 34, 34));
-		mensagemCode.setBounds(10, 120, 350, 20);
-		mensagemCode.setText("Mensagem de Status");
-
-		saidaPlacaFrame.add(mensagemCode);
-		mensagemCode.setColumns(10);
-
 		JButton RegistrarSaidaBtn = new JButton("Registrar Saída");
 		RegistrarSaidaBtn.setForeground(Color.WHITE);
-		RegistrarSaidaBtn.setBackground(Color.RED);
-		RegistrarSaidaBtn.setBounds(10, 136, 350, 54);
+		RegistrarSaidaBtn.setBackground(new Color(138, 26, 37));
+		RegistrarSaidaBtn.setBounds(10, 147, 350, 54);
 
 		RegistrarSaidaBtn.addActionListener(new ActionListener() {
 
