@@ -77,7 +77,7 @@ public class JanelaPrincipal {
 		frmMenuPrincipal.getContentPane().setLayout(null);
 
 		JPanel operacoesBasicasPanel = new JPanel();
-		operacoesBasicasPanel.setBackground(new Color(240, 240, 240, 0));
+		operacoesBasicasPanel.setBackground(new Color(0, 0, 0, 0));
 		// operacoesBasicasPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new
 		// Color(0, 0, 0)));
 		operacoesBasicasPanel.setBounds(217, 55, 314, 237);

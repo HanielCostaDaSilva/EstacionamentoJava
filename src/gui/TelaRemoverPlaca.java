@@ -93,7 +93,7 @@ public class TelaRemoverPlaca {
 		mensagemCode.setColumns(10);
 
 		JLabel VagaLabel = new JLabel("Vaga");
-		VagaLabel.setBounds(10, 34, 51, 31);
+		VagaLabel.setBounds(5, 44, 71, 31);
 		panel.add(VagaLabel);
 		VagaLabel.setFont(new Font("Source Serif Pro Light", Font.BOLD, 22));
 

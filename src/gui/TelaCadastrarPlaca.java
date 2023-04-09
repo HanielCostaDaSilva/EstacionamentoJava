@@ -89,7 +89,7 @@ public class TelaCadastrarPlaca {
 					return;
 				}
 				;
-
+				
 				String msg = RegistrarNovaPlaca(placa, vaga);
 				VagaInput.setText("");
 				PlacaInput.setText("");
