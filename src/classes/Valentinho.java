@@ -64,7 +64,7 @@ public class Valentinho {
 					System.out.print("Qual a placa para consultar? ");
 					placa = teclado.nextLine();
 					vaga = estacionamento.consultarPlaca(placa); 
-					System.out.println("vaga="+vaga);
+					System.out.println("vaga="+((vaga>0)?vaga:"inexistente"));
 					break;
 				case 4 : 
 					System.out.print("Qual a vaga origem? ");

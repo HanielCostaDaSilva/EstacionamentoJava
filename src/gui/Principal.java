@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import classes.Estacionamento;
 import operadorCSV.OperadorArquivoCSV;
@@ -18,6 +19,7 @@ import operadorCSV.OperadorArquivoCSV;
 import java.awt.Color;
 
 import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,7 +37,9 @@ public class Principal {
 	private JFrame frame;
 	private JTable table;
     JTextArea VagasVisor = new JTextArea();
-
+	JComboBox comboBox = new JComboBox();
+	private final JLabel lblNewLabel = new JLabel("vagas...");
+	private JTextField textField;
     private TelaCadastrarPlaca telaEntrada = null;
 	private TelaRemoverPlaca telaSaida = null;
 	private TelaTransferirPlaca telaTransferir = null;
@@ -124,9 +128,28 @@ public class Principal {
     public void atualizaPlacas(Estacionamento estacionamento){
         String[] placas = estacionamento.listarGeral();
         String aux="";
-        for(String placa:placas){
-            aux+=placa+"\n";
-        }
+		
+		switch(comboBox.getSelectedIndex()){
+			case 0:
+			for(String placa:placas){
+				aux+=placa+"\n";
+			}
+			break;
+			case 1:
+			for(String placa:placas){
+				if(!placa.contains("livre")){
+					aux+=placa+"\n";
+				}
+			}
+			break;
+			case 2:
+			for(String placa:placas){
+				if(placa.contains("livre")){
+					aux+=placa+"\n";
+				}
+			}
+			break;
+		}
         VagasVisor.setText(aux);
     }
 	/**
@@ -164,24 +187,34 @@ public class Principal {
         /*
          * parte da home, no qual ficam os botões de inserção e remoção dos veículos do estacionamento
          */
-
+		textField = new JTextField();
+		textField.setBounds(124, 0, 153, 28);
+		home.add(textField);
+		JButton button = new JButton("Go");
+		button.setBounds(277, 0, 47, 28);
+		home.add(button);
+		textField.setColumns(10);
+		lblNewLabel.setForeground(SystemColor.info);
+		lblNewLabel.setBackground(new Color(36, 31, 49));
+		lblNewLabel.setBounds(124, 22, 200, 23);
+		home.add(lblNewLabel);
 
 		JButton registrarTransferenciaBtn = new JButton("Registrar transferência");
 		registrarTransferenciaBtn.setForeground(new Color(0, 0, 0));
 		registrarTransferenciaBtn.setBackground(new Color(255, 204, 0));
-		registrarTransferenciaBtn.setBounds(125, 169, 200, 52);
+		registrarTransferenciaBtn.setBounds(125, 209, 200, 52);
 		home.add(registrarTransferenciaBtn);
 		
 		JButton registrarSaidaBtn = new JButton("Registrar Saída");
 		registrarSaidaBtn.setForeground(new Color(0, 0, 0));
 		registrarSaidaBtn.setBackground(new Color(153, 0, 0));
-		registrarSaidaBtn.setBounds(125, 101, 200, 52);
+		registrarSaidaBtn.setBounds(125, 141, 200, 52);
 		home.add(registrarSaidaBtn);
 		
 		JButton registrarEntradaBtn = new JButton("Registrar Entrada");
 		registrarEntradaBtn.setForeground(new Color(0, 0, 0));
 		registrarEntradaBtn.setBackground(new Color(34, 139, 34));
-		registrarEntradaBtn.setBounds(125, 37, 200, 52);
+		registrarEntradaBtn.setBounds(125, 77, 200, 52);
 		home.add(registrarEntradaBtn);
 		
         registrarSaidaBtn.addActionListener(new ActionListener() {
@@ -231,7 +264,7 @@ public class Principal {
         VagasVisor.setEditable(false);
 		VagasVisor.setText("");
 		
-		JComboBox comboBox = new JComboBox();
+		
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"todas", "ocupadas", "livres"}));
 		comboBox.setBounds(188, 12, 118, 25);
 		vagas.add(comboBox);
@@ -319,16 +352,12 @@ public class Principal {
 
 
 
-
-
-
-
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 450, 263);
 		frame.getContentPane().add(tabbedPane);
         tabbedPane.setSize(450, 300);
 		
-		
+		//criará as abas
 		tabbedPane.addTab("Home", null, home, null);
 		
 		
