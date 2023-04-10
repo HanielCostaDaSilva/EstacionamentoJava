@@ -38,7 +38,8 @@ public class Principal {
 	private JTable table;
     JTextArea VagasVisor = new JTextArea();
 	JComboBox comboBox = new JComboBox();
-	private final JLabel lblNewLabel = new JLabel("vagas...");
+	private final JLabel lblNewPlaca = new JLabel("Placa :");
+	private final JLabel lblNewVaga = new JLabel("Vaga :");
 	private JTextField textField;
     private TelaCadastrarPlaca telaEntrada = null;
 	private TelaRemoverPlaca telaSaida = null;
@@ -85,6 +86,14 @@ public class Principal {
 		
 		
 	}
+	//pesquisa pela placa e fornece sua posição ou a ausencia dela
+	public void pesquisarPlaca(Estacionamento estacionamento){
+		int vaga = estacionamento.consultarPlaca(textField.getText());
+		lblNewPlaca.setText("Placa : "+((textField.getText().equals(""))?"vazio":textField.getText()));
+		lblNewVaga.setText("Vaga : "+((vaga>0)?vaga:"inexistente"));
+		textField.setText("");
+	}
+
     //sincroniza os dados do arquivo historico com os dados dentro do Estacionamento
     public void updateData(Estacionamento estacionamento){
         dados = (ArrayList<String>) OperadorArquivoCSV.lerArquivo("historico.csv");
@@ -187,34 +196,48 @@ public class Principal {
         /*
          * parte da home, no qual ficam os botões de inserção e remoção dos veículos do estacionamento
          */
+		JLabel pesquisa = new JLabel("Pesquisa por placa");
+		pesquisa.setBounds(124, 0, 153, 18);
+		home.add(pesquisa);
 		textField = new JTextField();
-		textField.setBounds(124, 0, 153, 28);
+		textField.setBounds(124, 20, 153, 28);
 		home.add(textField);
-		JButton button = new JButton("Go");
-		button.setBounds(277, 0, 47, 28);
-		home.add(button);
+		JButton pesquisarplaca = new JButton("Ir");
+		pesquisarplaca.setBounds(277, 20, 57, 28);
+		home.add(pesquisarplaca);
 		textField.setColumns(10);
-		lblNewLabel.setForeground(SystemColor.info);
-		lblNewLabel.setBackground(new Color(36, 31, 49));
-		lblNewLabel.setBounds(124, 22, 200, 23);
-		home.add(lblNewLabel);
+		lblNewPlaca.setForeground(new Color(60,60,60));
+		lblNewPlaca.setBackground(new Color(36, 31, 49));
+		lblNewPlaca.setBounds(124, 42, 300, 23);
+		home.add(lblNewPlaca);
+		lblNewVaga.setForeground(new Color(60,60,60));
+		lblNewVaga.setBackground(new Color(36, 31, 49));
+		lblNewVaga.setBounds(124, 62, 300, 23);
+		home.add(lblNewVaga);
+		pesquisarplaca.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				pesquisarPlaca(estacionamento);
+
+			}
+		});
 
 		JButton registrarTransferenciaBtn = new JButton("Registrar transferência");
 		registrarTransferenciaBtn.setForeground(new Color(0, 0, 0));
 		registrarTransferenciaBtn.setBackground(new Color(255, 204, 0));
-		registrarTransferenciaBtn.setBounds(125, 209, 200, 52);
+		registrarTransferenciaBtn.setBounds(125, 200, 200, 52);
 		home.add(registrarTransferenciaBtn);
 		
 		JButton registrarSaidaBtn = new JButton("Registrar Saída");
 		registrarSaidaBtn.setForeground(new Color(0, 0, 0));
 		registrarSaidaBtn.setBackground(new Color(153, 0, 0));
-		registrarSaidaBtn.setBounds(125, 141, 200, 52);
+		registrarSaidaBtn.setBounds(125, 143, 200, 52);
 		home.add(registrarSaidaBtn);
 		
 		JButton registrarEntradaBtn = new JButton("Registrar Entrada");
 		registrarEntradaBtn.setForeground(new Color(0, 0, 0));
 		registrarEntradaBtn.setBackground(new Color(34, 139, 34));
-		registrarEntradaBtn.setBounds(125, 77, 200, 52);
+		registrarEntradaBtn.setBounds(125, 86, 200, 52);
 		home.add(registrarEntradaBtn);
 		
         registrarSaidaBtn.addActionListener(new ActionListener() {

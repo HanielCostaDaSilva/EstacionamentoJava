@@ -129,9 +129,12 @@ public class Estacionamento {
 	public int consultarPlaca(String placa) {
 
 		for (int i = 0; i < this.placas.length; i++) {
-			if (this.placas[i].toLowerCase().equals(placa.toLowerCase())) {
-				return i + 1; // retorna a posição legível ao usuArio
+			if(this.placas[i]!=null){
+				if (this.placas[i].toLowerCase().equals(placa.toLowerCase())) {
+					return i + 1; // retorna a posição legível ao usuArio
+				}
 			}
+			
 		}
 		return -1; // caso não ache a placa
 	};
