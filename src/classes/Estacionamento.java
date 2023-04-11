@@ -25,12 +25,9 @@ public class Estacionamento {
 
 		this.placas = new String[vagasLivres]; // placas é instanciada com a quantidade de vagas pedidas pelo usuário
 
-		OperadorArquivoCSV.criarArquivo(urlHistorico, "data", "vaga", "placa", "situação"); // criamos o arquivo que
-																							// conterá o histórico
-		OperadorArquivoCSV.criarArquivo(urlPlacas, "vaga", "placa"); // é criado o arquivo que armazena todsas as placas
-																		// presentes no estacionamentos.
-		this.lerDados(); // verificamos se já há algum veículo dentro do arquivo, para inserí-lo na lista
-							// de placas.
+		OperadorArquivoCSV.criarArquivo(urlHistorico, "data", "vaga", "placa", "situação"); // criamos o arquivo que conterá o histórico
+		OperadorArquivoCSV.criarArquivo(urlPlacas, "vaga", "placa"); // é criado o arquivo que armazena todsas as placas presentes no estacionamentos.
+		this.lerDados(); // verificamos se já há algum veículo dentro do arquivo, para inserí-lo na lista  de placas.
 	};
 
 	/**
@@ -205,8 +202,7 @@ public class Estacionamento {
 			String[] colunas = linha.split(";");
 
 			if (!(colunas[1].equals("null"))) { // se não houver placa, é porque a vaga está desocupada
-				this.placas[Integer.parseInt(colunas[0]) - 1] = colunas[1]; // Só será gravado as vagas que possuem
-																			// veículos.
+				this.placas[Integer.parseInt(colunas[0]) - 1] = colunas[1]; // Só será gravado as vagas que possuem veículos.
 			}
 			;
 		}
@@ -221,9 +217,4 @@ public class Estacionamento {
 		}
 	}
 
-	public List<String> HistoricoData() {
-		List<String> linhasCSV = OperadorArquivoCSV.lerArquivo("historico.csv");
-		Collections.reverse(linhasCSV);
-		return linhasCSV;
-	};
 }

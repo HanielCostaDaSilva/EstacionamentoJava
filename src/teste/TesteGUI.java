@@ -1,5 +1,6 @@
 package teste;
 import gui.*;
+import gui.tools.Historico;
 
 
 
