@@ -31,7 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class JanelaPrincipal {
+public class JanelaPrincipalV2 {
     private int page = 1;
 	private JFrame frmPrincipal;
 	private JTable table;
@@ -56,7 +56,7 @@ public class JanelaPrincipal {
 			public void run() {
 				try {
                     
-					JanelaPrincipal window = new JanelaPrincipal();
+					JanelaPrincipalV2 window = new JanelaPrincipalV2();
 					window.frmPrincipal.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -168,7 +168,7 @@ public class JanelaPrincipal {
 	/**
 	 * Create the application.
 	 */
-	public JanelaPrincipal() {
+	public JanelaPrincipalV2() {
         try {
             Estacionamento estacionamento = new Estacionamento(10);
             updateData(estacionamento);
