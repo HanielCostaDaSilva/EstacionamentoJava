@@ -21,6 +21,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.beans.EventHandler;
 
 import javax.annotation.processing.FilerException;
 import javax.swing.DefaultComboBoxModel;
@@ -204,14 +209,7 @@ public class JanelaPrincipal {
 
         //Vagas
 
-        JButton btnMostrar = new JButton("Mostrar");
-		btnMostrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-                atualizaPlacas(estacionamento);
-			}
-		});
-		btnMostrar.setBounds(318, 12, 90, 25);
-		vagas.add(btnMostrar);
+   
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 12, 168, 250);
@@ -221,12 +219,15 @@ public class JanelaPrincipal {
 		scrollPane.setViewportView(VagasVisor);
         VagasVisor.setEditable(false);
 		VagasVisor.setText("");
-		
-		
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				atualizaPlacas(estacionamento);
+			}
+		});
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"todas", "ocupadas", "livres"}));
 		comboBox.setBounds(188, 12, 118, 25);
 		vagas.add(comboBox);
-
+		
 
 
 
