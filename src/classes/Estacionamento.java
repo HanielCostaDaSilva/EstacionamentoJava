@@ -118,7 +118,7 @@ public class Estacionamento {
 
 		// Referente ao histórico
 		OperadorArquivoCSV.escreverArquivo(this.urlHistorico, this.getMomentoAtual(), Integer.toString(vaga2),
-				placaTransferida, "Transferência");
+				placaTransferida, "transferência");
 		this.gravarDados();
 
 	}

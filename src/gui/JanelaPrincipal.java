@@ -40,14 +40,17 @@ public class JanelaPrincipal {
     private int page = 1;
 	private JFrame frmPrincipal;
 	private JTable table;
-    JTextArea VagasVisor = new JTextArea();
-	JComboBox comboBox = new JComboBox();
+    private JTextArea VagasVisor = new JTextArea();
+	private JComboBox comboBox = new JComboBox();
 	private final JLabel lblNewPlaca = new JLabel("Placa :");
 	private final JLabel lblNewVaga = new JLabel("Vaga :");
 	private JTextField pesquisarPlacaInput;
     private TelaCadastrarPlaca telaEntrada = null;
 	private TelaRemoverPlaca telaSaida = null;
 	private TelaTransferirPlaca telaTransferir = null;
+	private JButton btnNewButton_1 = new JButton(">");
+	private JButton btnNewButton = new JButton("<");
+	private JButton recarregar = new JButton("R");
 
     private ArrayList<String> dados = new ArrayList<String>();
 	
@@ -137,8 +140,10 @@ public class JanelaPrincipal {
 				table.getColumnModel().getColumn(0).setMinWidth(145);
 				table.getColumnModel().getColumn(1).setPreferredWidth(50);
 				table.getColumnModel().getColumn(1).setMinWidth(50);
+				table.getColumnModel().getColumn(2).setPreferredWidth(100);
+				table.getColumnModel().getColumn(2).setMinWidth(100);
 				table.getColumnModel().getColumn(3).setPreferredWidth(85);
-				table.getColumnModel().getColumn(3).setMinWidth(75);
+				table.getColumnModel().getColumn(3).setMinWidth(85);
 	}
 
 
@@ -191,8 +196,9 @@ public class JanelaPrincipal {
 	 */
 	private void initialize(Estacionamento estacionamento) {
 		frmPrincipal = new JFrame();
+		frmPrincipal.setResizable(false);
 		frmPrincipal.setTitle("Principal");
-		frmPrincipal.setBounds(100, 100, 459, 333);
+		frmPrincipal.setBounds(100, 100, 450, 330);
 		frmPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmPrincipal.getContentPane().setLayout(null);
 		
@@ -227,7 +233,7 @@ public class JanelaPrincipal {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"todas", "ocupadas", "livres"}));
 		comboBox.setBounds(188, 12, 118, 25);
 		vagas.add(comboBox);
-		
+		atualizaPlacas(estacionamento);
 
 
 
@@ -239,17 +245,16 @@ public class JanelaPrincipal {
 		table.setBounds(39, 31, 357, 227);
 		historico.add(table);
 		table.setEnabled(false);
-		JLabel lblHistrico = new JLabel("Histórico "+page);
+		JLabel lblHistrico = new JLabel("Página: "+page);
 		lblHistrico.setBounds(39, 10, 100, 15);
 		historico.add(lblHistrico);
-		JButton btnNewButton_1 = new JButton(">");
-		JButton btnNewButton = new JButton("<");
+		
 		btnNewButton.setEnabled(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				page -=1;
                 updateData(estacionamento);
-				lblHistrico.setText("Histórico "+page);
+				lblHistrico.setText("Página "+page);
 				getHistorico(page);
                 btnNewButton_1.setEnabled(nextPage());
 				if(page==1) {
@@ -260,6 +265,10 @@ public class JanelaPrincipal {
 		
 		btnNewButton.setBounds(284, 3, 55, 25);
 		historico.add(btnNewButton);
+
+
+		recarregar.setBounds(230, 3, 50, 25);
+		historico.add(recarregar);
 		
 		
 		btnNewButton_1.setBounds(342, 3, 55, 25);
@@ -270,9 +279,21 @@ public class JanelaPrincipal {
 				page +=1;
                 updateData(estacionamento);
 				getHistorico(page);
-				lblHistrico.setText("Histórico "+page);
+				lblHistrico.setText("Página "+page);
 				btnNewButton.setEnabled(true);
                 btnNewButton_1.setEnabled(nextPage());
+			}
+		});
+
+		recarregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+                updateData(estacionamento);
+				lblHistrico.setText("Página "+page);
+				getHistorico(page);
+                btnNewButton_1.setEnabled(nextPage());
+				if(page==1) {
+					btnNewButton.setEnabled(false);
+				}
 			}
 		});
 
@@ -291,15 +312,15 @@ public class JanelaPrincipal {
 		home.add(panel);
 		panel.setLayout(null);
 		JLabel pesquisalabel = new JLabel("Pesquisar Placa");
-		pesquisalabel.setBounds(0, 17, 100, 18);
+		pesquisalabel.setBounds(0, 20, 150, 18);
 		panel.add(pesquisalabel);
 		pesquisarPlacaInput = new JTextField();
 		pesquisarPlacaInput.setFont(new Font("Tahoma", Font.BOLD, 15));
-		pesquisarPlacaInput.setBounds(98, 11, 153, 28);
+		pesquisarPlacaInput.setBounds(120, 17, 153, 28);
 		panel.add(pesquisarPlacaInput);
 		pesquisarPlacaInput.setColumns(10);
 		JButton pesquisarplaca = new JButton("Ir");
-		pesquisarplaca.setBounds(249, 12, 57, 28);
+		pesquisarplaca.setBounds(275, 17, 57, 28);
 		panel.add(pesquisarplaca);
 		lblNewPlaca.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewPlaca.setBounds(10, 51, 146, 23);
