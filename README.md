@@ -15,6 +15,8 @@ Java
 
 <li><b>Criação de algoritmos capazes de atender as interações do usuário</b> </li>
 
-<li><b> GUI <em>Em fase de trabalho...</em></b> </li>
+<li><b> Capacidade de promover diferentes interações a partir de uma GUI ao usuário. </b> </li>
+
+<li><b> Ser capaz de passar valores entre Janelas distintas. </b> </li>
 
 </ul>
