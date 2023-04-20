@@ -35,3 +35,26 @@
 <li><b> Ser capaz de passar valores entre Janelas distintas. </b> </li>
 
 </ul>
+
+<h2> Contribuidores </h2>
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/nonluck">
+        <img src="https://avatars.githubusercontent.com/u/125413110?v=4" width="100px;" alt="Luis Kilmer"/><br>
+        <sub>
+          <b>Luis Kilmer</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/HanielCostaDaSilva">
+        <img src="https://avatars.githubusercontent.com/u/87027617?v=4" width="100px;" alt="Haniel Costa da Silva"/><br>
+        <sub>
+          <b>Haniel Costa da Silva</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
