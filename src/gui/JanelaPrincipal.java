@@ -21,11 +21,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.beans.EventHandler;
 
 import javax.annotation.processing.FilerException;
 import javax.swing.DefaultComboBoxModel;
@@ -41,7 +38,7 @@ public class JanelaPrincipal {
 	private JFrame frmPrincipal;
 	private JTable table;
     private JTextArea VagasVisor = new JTextArea();
-	private JComboBox comboBox = new JComboBox();
+	private JComboBox<String> comboBox = new JComboBox<>();
 	private final JLabel lblNewPlaca = new JLabel("Placa :");
 	private final JLabel lblNewVaga = new JLabel("Vaga :");
 	private JTextField pesquisarPlacaInput;
@@ -230,7 +227,7 @@ public class JanelaPrincipal {
 				atualizaPlacas(estacionamento);
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"todas", "ocupadas", "livres"}));
+		comboBox.setModel(new DefaultComboBoxModel<>(new String[] {"todas", "ocupadas", "livres"}));
 		comboBox.setBounds(188, 12, 118, 25);
 		vagas.add(comboBox);
 		atualizaPlacas(estacionamento);
@@ -254,7 +251,7 @@ public class JanelaPrincipal {
 			public void actionPerformed(ActionEvent arg0) {
 				page -=1;
                 updateData(estacionamento);
-				lblHistrico.setText("Página "+page);
+				lblHistrico.setText("Página: "+page);
 				getHistorico(page);
                 btnNewButton_1.setEnabled(nextPage());
 				if(page==1) {
@@ -279,7 +276,7 @@ public class JanelaPrincipal {
 				page +=1;
                 updateData(estacionamento);
 				getHistorico(page);
-				lblHistrico.setText("Página "+page);
+				lblHistrico.setText("Página: "+page);
 				btnNewButton.setEnabled(true);
                 btnNewButton_1.setEnabled(nextPage());
 			}
@@ -380,7 +377,7 @@ public class JanelaPrincipal {
 						telaEntrada = new TelaCadastrarPlaca(estacionamento);
 						telaEntrada.setVisible();
 		
-					}
+					}  
 				});
 		pesquisarplaca.addActionListener(new ActionListener() {
 
@@ -396,5 +393,6 @@ public class JanelaPrincipal {
 
 	
 		tabbedPane.addTab("Vagas", null, vagas, null);
+
 	}
 }

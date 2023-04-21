@@ -67,7 +67,7 @@ public class TelaCadastrarPlaca {
 		frmEntrada.setResizable(false);
 		frmEntrada.setTitle("Entrada");
 		frmEntrada.setBackground(new Color(192, 192, 192));
-		frmEntrada.setBounds(100, 100, 427, 299);
+		frmEntrada.setBounds(550, 100, 427, 299);
 
 		JButton EntradaPlacaBtn = new JButton("Entrar");
 		EntradaPlacaBtn.setForeground(Color.WHITE);
@@ -87,12 +87,9 @@ public class TelaCadastrarPlaca {
 				catch (Exception E) {
 					mensagemCode.setText("Ops... Algum campo ficou em branco");
 					return;
-				}
-				;
+				};
 				
 				String msg = RegistrarNovaPlaca(placa, vaga);
-				VagaInput.setText("");
-				PlacaInput.setText("");
 				mensagemCode.setText(msg);
 			}
 		});
@@ -151,9 +148,14 @@ public class TelaCadastrarPlaca {
 	private String RegistrarNovaPlaca(String placa, int vaga) {
 		try {
 			this.estacionamento.entrar(placa, vaga);
+		
+			PlacaInput.setText("");
+			VagaInput.setText("");
+
 			return "Placa: " + placa + " inserido na Vaga " + vaga;
 
 		} catch (Exception e) {
+			VagaInput.setText("");
 			return e.getMessage();
 		}
 	}

@@ -16,9 +16,14 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class Historico extends JPanel{
-    private int page = 1;
+    private static final long serialVersionUID = 1L;
+	private int page = 1;
     private ArrayList<String> dados = new ArrayList<String>();
     private JTable table = new JTable();
+	private  JButton recarregar = new JButton("R");
+	private JButton nextButton = new JButton(">");
+	private JButton backButton = new JButton("<");
+	private JLabel lblHistrico = new JLabel("Página "+page);
 
     public Historico(Estacionamento estacionamento){
         updateData(estacionamento);
@@ -93,44 +98,56 @@ public class Historico extends JPanel{
 		table.setBorder(new LineBorder(Color.BLACK));
 		table.setFont(new Font("Dialog", Font.BOLD, 12));
 		getHistorico(page);
+
+		backButton.setBounds(284, 3, 55, 25);
 		table.setBounds(39, 31, 357, 227);
-		add(table);
-		table.setEnabled(false);
-		JLabel lblHistrico = new JLabel("Histórico "+page);
+		nextButton.setBounds(342, 3, 55, 25);
 		lblHistrico.setBounds(39, 10, 100, 15);
+		recarregar.setBounds(230, 3, 50, 25);
+
+		add(backButton);
+		add(nextButton);
+		add(recarregar);
+		add(table);
 		add(lblHistrico);
-		JButton btnNewButton_1 = new JButton(">");
-		JButton btnNewButton = new JButton("<");
-		btnNewButton.setEnabled(false);
-		btnNewButton.addActionListener(new ActionListener() {
+
+		table.setEnabled(false);
+		backButton.setEnabled(false);
+
+		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				page -=1;
                 updateData(estacionamento);
-				lblHistrico.setText("Histórico "+page);
+				lblHistrico.setText("Página "+page);
 				getHistorico(page);
-                btnNewButton_1.setEnabled(nextPage());
+                nextButton.setEnabled(nextPage());
 				if(page==1) {
-					btnNewButton.setEnabled(false);
+					backButton.setEnabled(false);
 				}
             }
            
 		});
-		
-		btnNewButton.setBounds(284, 3, 55, 25);
-		add(btnNewButton);
-		
-		
-		btnNewButton_1.setBounds(342, 3, 55, 25);
-		add(btnNewButton_1);
-		
-		btnNewButton_1.addActionListener(new ActionListener() {
+
+		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				page +=1;
                 updateData(estacionamento);
 				getHistorico(page);
-				lblHistrico.setText("Histórico "+page);
-				btnNewButton.setEnabled(true);
-                btnNewButton_1.setEnabled(nextPage());
+				lblHistrico.setText("Página "+page);
+				backButton.setEnabled(true);
+                nextButton.setEnabled(nextPage());
+			}
+		});
+
+		recarregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+                updateData(estacionamento);
+				lblHistrico.setText("Página "+page);
+				getHistorico(page);
+                nextButton.setEnabled(nextPage());
+				if(page==1) {
+					backButton.setEnabled(false);
+				}
 			}
 		});
 

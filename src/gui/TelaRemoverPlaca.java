@@ -72,7 +72,7 @@ public class TelaRemoverPlaca {
 
 		saidaPlacaFrame.setBackground(new Color(192, 192, 192));
 		saidaPlacaFrame.setResizable(false);
-		saidaPlacaFrame.setBounds(100, 100, 386, 240);
+		saidaPlacaFrame.setBounds(550, 430, 386, 240);
 		saidaPlacaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		saidaPlacaFrame.getContentPane().setLayout(null);
 
