@@ -66,7 +66,7 @@ public class TelaTransferirPlaca {
 		frmTranferir.setResizable(false);
 		frmTranferir.setTitle("Tranferência");
 		frmTranferir.setBackground(new Color(192, 192, 192));
-		frmTranferir.setBounds(100, 100, 450, 300);
+		frmTranferir.setBounds(50, 400, 450, 300);
 
 		JButton TransferenciaPlacaBtn = new JButton("Transferir");
 		TransferenciaPlacaBtn.setForeground(Color.WHITE);
@@ -89,8 +89,6 @@ public class TelaTransferirPlaca {
 				}
 				;
 				String msg = TransferirPlacas(vagaOrigem, vagaDestino);
-				vagaDestinoInput.setText("");
-				vagaOrigemInput.setText("");
 				mensagemCode.setText(msg);
 			}
 		});
@@ -149,9 +147,11 @@ public class TelaTransferirPlaca {
 	private String TransferirPlacas(int origem, int destino) {
 		try {
 			this.estacionamento.transferir(origem, destino);
+			vagaDestinoInput.setText("");
+			vagaOrigemInput.setText("");
 			return "Sucesso! O veiculo antes na vaga " + origem + " foi transferido para a vaga " + destino;
-
 		} catch (Exception e) {
+			vagaDestinoInput.setText("");
 			return e.getMessage();
 		}
 	}
