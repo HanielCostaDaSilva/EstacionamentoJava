@@ -67,7 +67,7 @@ public class OperadorArquivoCSV {
 			dadosExistentes.add(linhaDados);
 			
 			//adicionar no csv
-			String todasLinhas= lerArquivo(dadosExistentes);
+			String todasLinhas= OrganizarArquivo(dadosExistentes);
 			FileWriter arquivo = new FileWriter(new File("").getCanonicalPath()+"/data/".concat(url), false);
 			arquivo.write(todasLinhas);
 			arquivo.close();
@@ -92,7 +92,7 @@ public class OperadorArquivoCSV {
 		return resultado;
 	}                                      
 	
-	public static String lerArquivo(List<String> dadosExistentes){
+	public static String OrganizarArquivo(List<String> dadosExistentes){
 		
 		String linha="";
 		
