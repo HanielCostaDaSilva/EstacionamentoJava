@@ -147,12 +147,17 @@ public class TelaCadastrarPlaca {
 
 	private String RegistrarNovaPlaca(String placa, int vaga) {
 		try {
-			this.estacionamento.entrar(placa, vaga);
+			if (!placa.equals("")){
+				this.estacionamento.entrar(placa, vaga);
 		
-			PlacaInput.setText("");
-			VagaInput.setText("");
+				PlacaInput.setText("");
+				VagaInput.setText("");
 
-			return "Placa: " + placa + " inserido na Vaga " + vaga;
+				return "Placa: " + placa + " inserido na Vaga " + vaga;
+			}else{
+				return "Espaço vazio";
+			}
+			
 
 		} catch (Exception e) {
 			VagaInput.setText("");
