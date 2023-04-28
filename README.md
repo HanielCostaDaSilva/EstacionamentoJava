@@ -49,6 +49,8 @@
 
 </ul>
 
+<div align="center">
+
 <h2> Contribuidores </h2>
 
 <table>
